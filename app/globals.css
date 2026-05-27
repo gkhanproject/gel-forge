@@ -1,0 +1,1427 @@
+/* ==========================================================================
+   CSS CUSTOM VARIABLES & PREMIUM HUD THEMES
+   ========================================================================== */
+
+/* 1. PREMIUM STEALTH INDIGO THEME (Default Cyber-SaaS dark) */
+body[data-theme="stealth"] {
+  --bg-primary: #05060b;
+  --bg-secondary: #0a0c16;
+  --bg-card: rgba(10, 12, 22, 0.75);
+  --bg-element: #161a2b;
+  --text-primary: #f8fafc;
+  --text-secondary: #94a3b8;
+  
+  --accent-neon: #6366f1; /* Electric Indigo */
+  --accent-glow: transparent;
+  --accent-accent: #06b6d4; /* Electric Cyan */
+  
+  --grid-line-major: rgba(99, 102, 241, 0.08);
+  --grid-line-minor: rgba(99, 102, 241, 0.02);
+  
+  --vignette-center: #090e1e;
+  --vignette-outer: #030408;
+  
+  /* Gun Parts Aesthetics (CAD Silver schematic) */
+  --gun-matte: #0e111a;
+  --gun-matte-dark: #05060b;
+  --gun-polymer: #121622;
+  --gun-accent: #6366f1; 
+  --gun-stroke: #f1f5f9; /* Sharp vector white */
+  
+  --card-border: 1px solid rgba(99, 102, 241, 0.25);
+  --card-glow: none;
+}
+
+/* 2. MINIMAL BLUEPRINT LIGHT THEME (Apple/SaaS minimal CAD drawing) */
+body[data-theme="draft"] {
+  --bg-primary: #f8fafc;
+  --bg-secondary: #ffffff;
+  --bg-card: rgba(255, 255, 255, 0.85);
+  --bg-element: #e2e8f0;
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+  
+  --accent-neon: #4f46e5; /* Indigo blueprint ink */
+  --accent-glow: transparent;
+  --accent-accent: #0ea5e9; /* Sky cyan ink */
+  
+  --grid-line-major: rgba(79, 70, 229, 0.05);
+  --grid-line-minor: rgba(79, 70, 229, 0.01);
+  
+  --vignette-center: #ffffff;
+  --vignette-outer: #f1f5f9;
+  
+  /* Gun Parts Aesthetics (Clean line art) */
+  --gun-matte: #ffffff;      
+  --gun-matte-dark: #ffffff; 
+  --gun-polymer: #ffffff;    
+  --gun-accent: #f8fafc;     
+  --gun-stroke: #0f172a;     /* Bold black blueprint ink */
+  
+  --card-border: 1px solid rgba(79, 70, 229, 0.15);
+  --card-glow: none;
+}
+
+/* 3. PREMIUM CYBER WARNING THEME (Industrial Amber warning dashboard) */
+body[data-theme="cyber"] {
+  --bg-primary: #070503;
+  --bg-secondary: #0f0b07;
+  --bg-card: rgba(15, 11, 7, 0.8);
+  --bg-element: #22170d;
+  --text-primary: #fff2e6;
+  --text-secondary: #c2a68c;
+  
+  --accent-neon: #ff6a00; /* Sharp Industrial Orange */
+  --accent-glow: transparent;
+  --accent-accent: #ffb700;
+  
+  --grid-line-major: rgba(255, 106, 0, 0.06);
+  --grid-line-minor: rgba(255, 106, 0, 0.02);
+  
+  --vignette-center: #1a0f07;
+  --vignette-outer: #030201;
+  
+  /* Gun Parts Aesthetics */
+  --gun-matte: #0f0b07;
+  --gun-matte-dark: #070503;
+  --gun-polymer: #140f0a;
+  --gun-accent: #ff6a00; 
+  --gun-stroke: #ff6a00; /* Sharp tactical orange */
+  
+  --card-border: 1px solid rgba(255, 106, 0, 0.2);
+  --card-glow: none;
+}
+
+/* ==========================================================================
+   BASE STYLES & RETRO OVERLAYS
+   ========================================================================== */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-inter), 'Inter', -apple-system, sans-serif;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  overflow: hidden;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+/* Technical Gaming Scanline effect overlay */
+.hud-scanline {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    rgba(18, 16, 16, 0) 50%, 
+    rgba(0, 0, 0, 0.06) 50%
+  );
+  background-size: 100% 4px;
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0.35;
+}
+
+/* Glowing Mesh Overlay (Disabled to avoid edge fading on sidebars) */
+.hud-grid-overlay {
+  display: none;
+}
+
+/* ==========================================================================
+   APP HEADER BAR (Modern Glassmorphic Navbar)
+   ========================================================================== */
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  z-index: 5;
+  position: relative;
+}
+
+.hud-header {
+  height: 70px;
+  background-color: var(--bg-card);
+  backdrop-filter: blur(20px) saturate(180%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 30px;
+  flex-shrink: 0;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  z-index: 50;
+}
+
+/* Glowing glitchy gaming brand */
+.logo-area {
+  display: flex;
+  flex-direction: column;
+}
+
+.logo-area .glitch-text {
+  font-family: var(--font-orbitron), 'Orbitron', sans-serif;
+  font-size: 24px;
+  font-weight: 900;
+  letter-spacing: 1px;
+  color: var(--accent-neon);
+  position: relative;
+}
+
+.logo-area .sub-logo {
+  font-family: monospace;
+  font-size: 10px;
+  color: var(--text-secondary);
+  letter-spacing: 2px;
+  margin-top: 2px;
+}
+
+/* Quick loadouts preset select buttons */
+.preset-section {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background-color: rgba(255, 255, 255, 0.02);
+  padding: 6px 12px;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.preset-section .section-label {
+  font-family: var(--font-orbitron), 'Orbitron', sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--text-secondary);
+  letter-spacing: 0.5px;
+}
+
+.preset-buttons {
+  display: flex;
+  gap: 6px;
+}
+
+.preset-btn {
+  background: transparent;
+  border: none;
+  color: var(--text-secondary);
+  padding: 6px 14px;
+  font-family: var(--font-orbitron), 'Orbitron', sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  cursor: pointer;
+  border-radius: 15px;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.preset-btn:hover {
+  color: var(--text-primary);
+  background-color: rgba(255, 255, 255, 0.04);
+}
+
+.preset-btn.active {
+  background-color: var(--accent-neon);
+  color: #ffffff;
+  box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
+}
+
+/* Systems indicators and controllers */
+.sys-controls {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.control-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.control-group label {
+  font-family: var(--font-orbitron), 'Orbitron', sans-serif;
+  font-size: 10px;
+  color: var(--text-secondary);
+}
+
+.hud-dropdown {
+  background: var(--bg-element);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: var(--text-primary);
+  padding: 6px 12px;
+  font-family: var(--font-orbitron), 'Orbitron', sans-serif;
+  font-size: 11px;
+  border-radius: 6px;
+  cursor: pointer;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.hud-dropdown:focus {
+  border-color: var(--accent-neon);
+}
+
+.control-btn {
+  background: var(--bg-element);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  color: var(--text-secondary);
+  padding: 6px 14px;
+  font-family: var(--font-orbitron), 'Orbitron', sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  cursor: pointer;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.control-btn:hover {
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--text-primary);
+  transform: translateY(-1px);
+}
+
+.control-btn.active {
+  border-color: var(--accent-neon);
+  color: var(--accent-neon);
+  background-color: rgba(99, 102, 241, 0.05);
+}
+
+/* ==========================================================================
+   MAIN DASHBOARD GRID LAYOUT
+   ========================================================================== */
+
+.hud-main {
+  display: grid;
+  grid-template-columns: 340px 1fr 350px;
+  flex-grow: 1;
+  overflow: hidden;
+  position: relative;
+  background-color: var(--bg-primary);
+  padding: 12px;
+  gap: 12px;
+}
+
+.panel-header {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  padding: 16px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.panel-header h2 {
+  font-family: var(--font-orbitron), 'Orbitron', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: var(--text-primary);
+}
+
+.panel-status {
+  font-family: monospace;
+  font-size: 9px;
+  color: #10b981; /* Green online */
+  letter-spacing: 0.5px;
+  position: relative;
+  padding-left: 12px;
+}
+
+.panel-status::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 4px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: #10b981;
+}
+
+/* ==========================================================================
+   LEFT SIDEBAR: PREMIUM ACCORDION CARDS
+   ========================================================================== */
+
+.sidebar-left {
+  background-color: var(--bg-card);
+  backdrop-filter: blur(24px) saturate(180%);
+  border: var(--card-border);
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+.categories-accordion {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  padding: 12px 6px;
+  gap: 8px;
+}
+
+.accordion-item {
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  background: rgba(255, 255, 255, 0.01);
+  border-radius: 10px;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.accordion-header {
+  width: 100%;
+  text-align: left;
+  background: none;
+  border: none;
+  padding: 14px 18px;
+  color: var(--text-secondary);
+  font-family: var(--font-orbitron), 'Orbitron', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.accordion-header:hover {
+  background-color: rgba(255,255,255,0.02);
+  color: var(--text-primary);
+}
+
+.cat-num {
+  font-family: monospace;
+  color: var(--accent-neon);
+  margin-right: 12px;
+  font-size: 10px;
+  border: 1px solid rgba(99, 102, 241, 0.2);
+  padding: 1px 5px;
+  border-radius: 3px;
+}
+
+.accordion-content {
+  display: none;
+  padding: 10px 14px 14px 14px;
+  background-color: rgba(0, 0, 0, 0.1);
+  flex-direction: column;
+  gap: 8px;
+  border-top: 1px solid rgba(255,255,255,0.03);
+}
+
+.accordion-item.active {
+  border-color: var(--accent-neon);
+  background-color: rgba(99, 102, 241, 0.02);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.accordion-item.active .accordion-content {
+  display: flex;
+}
+
+.accordion-item.active .accordion-header {
+  color: var(--accent-neon);
+}
+
+/* Part Option Cards */
+.part-option {
+  background: var(--bg-element);
+  border: 1px solid rgba(255,255,255,0.05);
+  border-radius: 6px;
+  padding: 12px;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+}
+
+.part-option:hover {
+  border-color: rgba(255, 255, 255, 0.15);
+  transform: translateY(-1.5px);
+  background: rgba(255,255,255,0.02);
+}
+
+.part-option.active {
+  border-color: var(--accent-neon);
+  background-color: rgba(99, 102, 241, 0.08);
+  box-shadow: 0 4px 15px rgba(99, 102, 241, 0.15);
+}
+
+.part-meta {
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--font-orbitron), 'Orbitron', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.part-name {
+  color: var(--text-primary);
+}
+
+.part-price {
+  color: var(--accent-accent);
+}
+
+.part-desc {
+  font-size: 11px;
+  color: var(--text-secondary);
+  line-height: 1.4;
+  margin-bottom: 8px;
+}
+
+/* Stats Deltas in cards */
+.part-stats-delta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.delta {
+  font-family: monospace;
+  font-size: 9px;
+  padding: 2px 6px;
+  border-radius: 3px;
+}
+
+.delta.positive {
+  background-color: rgba(16, 185, 129, 0.08);
+  color: #10b981;
+}
+
+.delta.negative {
+  background-color: rgba(239, 68, 68, 0.08);
+  color: #ef4444;
+}
+
+.delta.neutral {
+  background-color: rgba(255, 255, 255, 0.04);
+  color: var(--text-secondary);
+}
+
+/* ==========================================================================
+   CENTER CUSTOMIZER CANVAS (Sleek Frame layout)
+   ========================================================================== */
+
+.customizer-stage {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+  background-color: var(--bg-card);
+  backdrop-filter: blur(24px) saturate(180%);
+  border: var(--card-border);
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.stage-hud-meta {
+  position: absolute;
+  top: 15px;
+  left: 20px;
+  right: 20px;
+  display: flex;
+  justify-content: space-between;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.hud-tag {
+  font-family: var(--font-orbitron), 'Orbitron', sans-serif;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  color: var(--text-secondary);
+}
+
+.pulse-cyan {
+  color: var(--accent-neon);
+  font-weight: 700;
+}
+
+.hud-coordinates {
+  font-family: monospace;
+  font-size: 9px;
+  color: var(--text-secondary);
+}
+
+.canvas-viewport {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  min-height: 250px;
+  padding: 20px;
+}
+
+/* SVG Customization layers & explode configurations */
+#blaster-svg {
+  transition: all 0.3s ease;
+}
+
+.svg-modular-part {
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.svg-sub-part {
+  display: none;
+}
+
+.svg-sub-part.active {
+  display: block;
+}
+
+/* SVG Colors mapped to CSS themes */
+#blaster-svg {
+  --stroke-width: 1.5;
+}
+
+/* EXPLODED MODE TRANSFORMATIONS (Dynamic Detaching) */
+#blaster-svg.exploded #stock-group {
+  transform: translate(-120px, 0); /* Explodes stock to left */
+}
+
+#blaster-svg.exploded #optics-group {
+  transform: translate(-40px, -90px); /* Explodes optics up-left */
+}
+
+#blaster-svg.exploded #muzzle-group {
+  transform: translate(140px, 0); /* Explodes muzzle right */
+}
+
+#blaster-svg.exploded #magazine-group {
+  transform: translate(0, 95px); /* Explodes mag down */
+}
+
+#blaster-svg.exploded #foregrip-group {
+  transform: translate(35px, 85px); /* Explodes grip down-right */
+}
+
+/* Show alignment lines during explode */
+#blaster-svg.exploded .alignment-vectors {
+  opacity: 0.85;
+}
+
+/* Pulsing overlay interactive hotspots */
+.hud-hotspots {
+  cursor: pointer;
+}
+
+.hotspot-trigger {
+  cursor: pointer;
+  pointer-events: bounding-box;
+}
+
+.hotspot-pulse {
+  transform-origin: center;
+  animation: pulse-hotspot 1.8s infinite ease-out;
+}
+
+@keyframes pulse-hotspot {
+  0% {
+    transform: scale(0.6);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(2.2);
+    opacity: 0;
+  }
+}
+
+/* ==========================================================================
+   FLOATING LABELS (Modern Apple-style product pill badges)
+   ========================================================================== */
+
+.hud-slot-label {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  pointer-events: none;
+  animation: label-load 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  opacity: 0;
+  z-index: 10;
+}
+
+@keyframes label-load {
+  0% {
+    transform: translateY(10px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.pointer-dot {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: var(--accent-neon);
+  color: #ffffff;
+  font-family: var(--font-orbitron), 'Orbitron', sans-serif;
+  font-size: 10px;
+  font-weight: 900;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.label-box {
+  background: var(--bg-card);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 20px;
+  padding: 4px 14px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.lbl-tag {
+  font-family: monospace;
+  font-size: 8px;
+  color: var(--text-secondary);
+  letter-spacing: 0.5px;
+  text-align: center;
+}
+
+.lbl-val {
+  font-family: var(--font-orbitron), 'Orbitron', sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--text-primary);
+  text-align: center;
+}
+
+/* Position adjustments for labels */
+.label-optics { transform: translate(-50%, -100%); }
+.label-muzzle { transform: translate(15px, -50%); }
+.label-magazine { transform: translate(-50%, 15px); }
+.label-foregrip { transform: translate(15px, 0); }
+.label-stock { transform: translate(-100%, -50%); }
+
+/* ==========================================================================
+   E-COMMERCE DIRECT BUY CARDS PANEL
+   ========================================================================== */
+
+.ecommerce-quick-buy {
+  background-color: rgba(0, 0, 0, 0.12);
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  padding: 16px 20px;
+  flex-shrink: 0;
+}
+
+.drawer-header {
+  margin-bottom: 12px;
+}
+
+.drawer-header h3 {
+  font-family: var(--font-orbitron), 'Orbitron', sans-serif;
+  font-size: 11px;
+  letter-spacing: 1px;
+  color: var(--text-primary);
+}
+
+.drawer-header .sub-header {
+  font-size: 10px;
+  color: var(--text-secondary);
+}
+
+.procure-card {
+  display: grid;
+  grid-template-columns: 1fr 1.6fr;
+  background-color: var(--bg-element);
+  border: 1px solid rgba(255,255,255,0.05);
+  border-radius: 8px;
+  padding: 16px 20px;
+  gap: 25px;
+  align-items: center;
+}
+
+.part-preview-details {
+  display: flex;
+  flex-direction: column;
+}
+
+.part-type-tag {
+  font-family: monospace;
+  font-size: 8px;
+  color: var(--text-secondary);
+  border: 1px solid rgba(255,255,255,0.08);
+  width: fit-content;
+  padding: 1px 6px;
+  border-radius: 3px;
+  margin-bottom: 6px;
+}
+
+.part-preview-details h4 {
+  font-family: var(--font-orbitron), 'Orbitron', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 4px;
+}
+
+.part-preview-details p {
+  font-size: 11px;
+  color: var(--text-secondary);
+  line-height: 1.4;
+  margin-bottom: 10px;
+}
+
+.buy-part-pricing {
+  font-family: var(--font-orbitron), 'Orbitron', sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--text-secondary);
+}
+
+.highlight-cyan {
+  color: var(--accent-accent);
+  font-size: 18px;
+  font-weight: 900;
+  margin-left: 6px;
+}
+
+/* OUTBOUND MARKTPLACE BUY BUTTONS */
+.outbound-platforms {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.platform-label {
+  font-family: var(--font-orbitron), 'Orbitron', sans-serif;
+  font-size: 9px;
+  font-weight: 700;
+  color: var(--text-secondary);
+  letter-spacing: 0.5px;
+}
+
+.platform-links-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+}
+
+.platform-link {
+  text-decoration: none;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 6px;
+  padding: 10px 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+}
+
+.platform-link:hover {
+  transform: translateY(-1.5px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.p-icon {
+  font-size: 16px;
+}
+
+.p-name {
+  font-family: var(--font-orbitron), 'Orbitron', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.p-action {
+  font-size: 9px;
+  font-weight: 400;
+  position: absolute;
+  bottom: 4px;
+  right: 12px;
+  opacity: 0;
+  transform: translateY(2px);
+  transition: all 0.2s ease;
+}
+
+.platform-link:hover .p-action {
+  opacity: 0.8;
+  transform: translateY(0);
+}
+
+/* Platform Brand Colors */
+.platform-link.link-shopee {
+  border-left: 3px solid #ff5722; /* Shopee Orange */
+}
+.platform-link.link-shopee:hover {
+  border-color: #ff5722;
+  color: #ff5722;
+}
+
+.platform-link.link-aliexpress {
+  border-left: 3px solid #e61919; /* AliExpress Red */
+}
+.platform-link.link-aliexpress:hover {
+  border-color: #e61919;
+  color: #e61919;
+}
+
+.platform-link.link-amazon {
+  border-left: 3px solid #ff9900; /* Amazon Yellow */
+}
+.platform-link.link-amazon:hover {
+  border-color: #ff9900;
+  color: #ff9900;
+}
+
+.platform-link.link-evike {
+  border-left: 3px solid #10b981; /* Evike Green */
+}
+.platform-link.link-evike:hover {
+  border-color: #10b981;
+  color: #10b981;
+}
+
+/* ==========================================================================
+   RIGHT SIDEBAR: GAMING STATS HUD DASHBOARD (Modern gauges)
+   ========================================================================== */
+
+.sidebar-right {
+  background-color: var(--bg-card);
+  backdrop-filter: blur(24px) saturate(180%);
+  border: var(--card-border);
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+/* Synergy Combat Class Circle */
+.grade-container {
+  display: flex;
+  padding: 16px 20px;
+  gap: 15px;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.grade-circle {
+  position: relative;
+  width: 70px;
+  height: 70px;
+}
+
+.grade-ring-fill {
+  transition: stroke-dashoffset 0.6s ease-in-out;
+}
+
+.grade-label {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.sub-grade {
+  font-size: 7px;
+  font-family: monospace;
+  color: var(--text-secondary);
+  letter-spacing: 0.5px;
+}
+
+.grade-char {
+  font-family: var(--font-orbitron), 'Orbitron', sans-serif;
+  font-size: 24px;
+  font-weight: 900;
+  color: var(--accent-neon);
+}
+
+.grade-meta h3 {
+  font-family: var(--font-orbitron), 'Orbitron', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  margin-bottom: 4px;
+  letter-spacing: 0.5px;
+}
+
+.grade-meta p {
+  font-size: 11px;
+  color: var(--text-secondary);
+  line-height: 1.4;
+}
+
+/* Detailed Parameter list with thick modern gauge bars */
+.stats-parameters {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  flex-grow: 1;
+}
+
+.stat-row {
+  display: flex;
+  flex-direction: column;
+}
+
+.stat-meta {
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--font-orbitron), 'Orbitron', sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  margin-bottom: 6px;
+  letter-spacing: 0.5px;
+}
+
+.stat-title {
+  color: var(--text-secondary);
+}
+
+.stat-value {
+  color: var(--text-primary);
+}
+
+.stat-progress-bar {
+  height: 10px; /* Thicker modern capsule */
+  background-color: var(--bg-element);
+  border-radius: 5px;
+  overflow: hidden;
+  position: relative;
+  border: 1px solid rgba(255, 255, 255, 0.02);
+}
+
+.progress-fill {
+  height: 100%;
+  background-color: var(--accent-neon);
+  border-radius: 5px;
+  transition: width 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+  position: relative;
+}
+
+.progress-fill::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: linear-gradient(
+    90deg, 
+    transparent 0%, 
+    rgba(255,255,255,0.2) 50%, 
+    transparent 100%
+  );
+  background-size: 40px 100%;
+  animation: bar-shine 2s infinite linear;
+}
+
+@keyframes bar-shine {
+  0% { background-position: -40px 0; }
+  100% { background-position: 100% 0; }
+}
+
+.stat-delta {
+  font-family: monospace;
+  font-size: 9px;
+  color: var(--accent-accent);
+  text-align: right;
+  margin-top: 3px;
+}
+
+/* TOTAL PRICING RECEIPT & KIT ORDER SUBMIT */
+.hud-billing-box {
+  background-color: rgba(0, 0, 0, 0.12);
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  padding: 16px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.billing-header {
+  font-family: var(--font-orbitron), 'Orbitron', sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--text-secondary);
+  border-bottom: 1px dashed rgba(255,255,255,0.06);
+  padding-bottom: 6px;
+  letter-spacing: 0.5px;
+}
+
+.billing-rows {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.bill-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+  color: var(--text-secondary);
+}
+
+.bill-row strong {
+  font-family: var(--font-orbitron), 'Orbitron', sans-serif;
+  font-size: 11px;
+  color: var(--text-primary);
+}
+
+.highlight-gold {
+  color: var(--accent-neon) !important;
+  font-size: 15px !important;
+  font-weight: 900;
+}
+
+.order-kit-btn {
+  background-color: var(--accent-neon);
+  border: none;
+  color: #ffffff;
+  padding: 12px;
+  font-family: var(--font-orbitron), 'Orbitron', sans-serif;
+  font-weight: 900;
+  font-size: 11px;
+  letter-spacing: 0.5px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(99, 102, 241, 0.35);
+}
+
+.order-kit-btn:hover {
+  background-color: var(--text-primary);
+  color: var(--bg-primary);
+  transform: translateY(-1.5px);
+  box-shadow: 0 6px 20px rgba(99, 102, 241, 0.5);
+}
+
+/* ==========================================================================
+   SIMULATED RECEIPT CHECKOUT MODAL SCREEN
+   ========================================================================== */
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(5, 6, 10, 0.85);
+  backdrop-filter: none;
+  z-index: 1000;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  animation: fade-in 0.2s ease;
+}
+
+@keyframes fade-in {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+.modal-box {
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--accent-neon);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+  width: 620px;
+  max-width: 90%;
+  border-radius: 8px;
+  position: relative;
+  overflow: hidden;
+  animation: modal-slide 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes modal-slide {
+  0% {
+    transform: translateY(20px) scale(0.98);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+}
+
+.modal-border-accent {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background-color: var(--accent-neon);
+}
+
+.modal-close {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  background: none;
+  border: none;
+  color: var(--text-secondary);
+  font-size: 24px;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.modal-close:hover {
+  color: var(--text-primary);
+}
+
+.modal-header {
+  padding: 25px 30px 15px 30px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.modal-header h2 {
+  font-family: var(--font-orbitron), 'Orbitron', sans-serif;
+  font-size: 16px;
+  letter-spacing: 1px;
+  color: var(--text-primary);
+}
+
+.invoice-number {
+  font-family: monospace;
+  font-size: 10px;
+  color: var(--accent-neon);
+}
+
+.modal-body {
+  padding: 20px 30px 25px 30px;
+}
+
+.invoice-notice {
+  font-size: 11px;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  margin-bottom: 15px;
+}
+
+.receipt-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+  font-size: 12px;
+}
+
+.receipt-table th {
+  font-family: var(--font-orbitron), 'Orbitron', sans-serif;
+  color: var(--text-secondary);
+  text-align: left;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  padding: 8px 10px;
+}
+
+.receipt-table td {
+  padding: 10px;
+  border-bottom: 1px solid rgba(255,255,255,0.03);
+}
+
+.text-right {
+  text-align: right;
+}
+
+.receipt-total-row td {
+  border-top: 2px dashed rgba(255,255,255,0.1);
+  font-family: var(--font-orbitron), 'Orbitron', sans-serif;
+  font-weight: 900;
+  font-size: 13px;
+  padding-top: 15px;
+}
+
+/* Consolidated Procurement Search tools */
+.consolidated-procurement {
+  background-color: rgba(0, 0, 0, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 6px;
+  padding: 15px;
+  margin-bottom: 20px;
+}
+
+.consolidated-procurement h3 {
+  font-family: var(--font-orbitron), 'Orbitron', sans-serif;
+  font-size: 11px;
+  color: var(--accent-accent);
+  margin-bottom: 6px;
+}
+
+.consolidated-procurement p {
+  font-size: 10px;
+  color: var(--text-secondary);
+  margin-bottom: 10px;
+}
+
+.quick-batch-links {
+  display: flex;
+  gap: 10px;
+}
+
+.batch-btn {
+  flex-grow: 1;
+  text-decoration: none;
+  font-family: var(--font-orbitron), 'Orbitron', sans-serif;
+  font-size: 10px;
+  font-weight: 800;
+  padding: 10px;
+  text-align: center;
+  border-radius: 4px;
+  transition: all 0.2s;
+  color: #fff;
+}
+
+.batch-shopee {
+  background-color: #ff5722;
+  box-shadow: 0 4px 10px rgba(255, 87, 34, 0.2);
+}
+.batch-shopee:hover {
+  background-color: #ff7043;
+}
+
+.batch-amazon {
+  background-color: transparent;
+  border: 1px solid #ff9900;
+  color: #ff9900;
+}
+.batch-amazon:hover {
+  background-color: rgba(255, 153, 0, 0.1);
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+}
+
+.action-btn-secondary {
+  background: var(--bg-element);
+  border: 1px solid rgba(255,255,255,0.06);
+  color: var(--text-secondary);
+  padding: 10px 18px;
+  font-family: var(--font-orbitron), 'Orbitron', sans-serif;
+  font-weight: 700;
+  font-size: 11px;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: all 0.2s;
+}
+
+.action-btn-secondary:hover {
+  color: var(--text-primary);
+  background-color: rgba(255,255,255,0.04);
+}
+
+.action-btn-primary {
+  background-color: var(--accent-neon);
+  border: none;
+  color: #ffffff;
+  padding: 10px 22px;
+  font-family: var(--font-orbitron), 'Orbitron', sans-serif;
+  font-weight: 900;
+  font-size: 11px;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: all 0.2s;
+  box-shadow: 0 4px 15px rgba(99, 102, 241, 0.35);
+}
+
+.action-btn-primary:hover {
+  background-color: var(--text-primary);
+  color: var(--bg-primary);
+  box-shadow: 0 6px 20px rgba(99, 102, 241, 0.5);
+}
+
+/* ==========================================================================
+   TOAST NOTIFICATION
+   ========================================================================== */
+
+.toast-notification {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%) translateY(50px);
+  background-color: var(--bg-secondary);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 30px;
+  padding: 8px 24px;
+  z-index: 10000;
+  pointer-events: none;
+  opacity: 0;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.toast-notification.show {
+  transform: translateX(-50%) translateY(0);
+  opacity: 1;
+}
+
+.toast-notification span {
+  font-family: var(--font-orbitron), 'Orbitron', sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+/* ==========================================================================
+   RESPONSIVE SCALING LAYOUT RULES
+   ========================================================================== */
+
+@media (max-width: 1200px) {
+  .hud-main {
+    grid-template-columns: 290px 1fr 300px;
+  }
+  .preset-section {
+    display: none; 
+  }
+}
+
+@media (max-width: 950px) {
+  body {
+    overflow-y: auto;
+    height: auto;
+  }
+  .app-container {
+    height: auto;
+  }
+  .hud-main {
+    grid-template-columns: 1fr;
+    height: auto;
+    overflow: visible;
+    padding: 10px;
+    gap: 10px;
+  }
+  .sidebar-left, .sidebar-right {
+    height: auto;
+    border: none;
+  }
+  .canvas-viewport {
+    height: 380px;
+  }
+  .hud-header {
+    flex-wrap: wrap;
+    height: auto;
+    padding: 15px;
+    gap: 15px;
+  }
+}
